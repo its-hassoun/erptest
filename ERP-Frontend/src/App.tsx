@@ -12,6 +12,7 @@ import { AllClients } from './Pages/Helpdesk/Ticket/AllClients';
 import { AgentDetail } from './Pages/Helpdesk/Ticket/AgentDetail';
 import { ClientDetail } from './Pages/Helpdesk/Ticket/ClientDetail';
 import { Knowledge } from './Pages/Helpdesk/Knowledge/Knowledge';
+import { Intervention } from './Pages/Helpdesk/Intervention/Intervention';
 import { ClientDashboard } from './Pages/Helpdesk/Ticket/ClientDashboard';
 import { SubClientDashboard } from './Pages/Helpdesk/Ticket/SubClientDashboard';
 
@@ -146,7 +147,9 @@ function App() {
           <Route path="/clients" element={<AllClients clients={USERS.filter(u => u.role === 'client')} />} />
 
           <Route path="/knowledge" element={<Knowledge />} />
-          
+
+          <Route path="/interventions" element={<Intervention />} />
+
           <Route path="*" element={<Navigate to={getDefaultRoute()} replace />} />
         </Routes>
       </AppLayout>

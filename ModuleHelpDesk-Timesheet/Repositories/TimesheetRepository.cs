@@ -21,7 +21,7 @@ namespace ModuleHelpDeskTimesheet.Repositories
         public async Task<TimesheetEntry?> GetEntryByIdAsync(int id)
             => await _context.TimesheetEntries.FindAsync(id);
 
-        public async Task<IEnumerable<TimesheetEntry>> GetEntriesByAgentAsync(string agentId, DateTime start, DateTime end)
+        public async Task<IEnumerable<TimesheetEntry>> GetEntriesByAgentAsync(int agentId, DateTime start, DateTime end)
         {
             return await _context.TimesheetEntries
                 .Where(e => e.AgentId == agentId && e.DateDebut >= start && e.DateFin <= end)
@@ -71,7 +71,7 @@ namespace ModuleHelpDeskTimesheet.Repositories
 
         #region Calendrier Logic
 
-        public async Task<IEnumerable<Calendrier>> GetCalendarByAgentAsync(string agentId, DateTime start, DateTime end)
+        public async Task<IEnumerable<Calendrier>> GetCalendarByAgentAsync(int agentId, DateTime start, DateTime end)
         {
             return await _context.CalendarEvents
                 .Where(c => c.AgentId == agentId && c.DateDebut >= start && c.DateFin <= end)

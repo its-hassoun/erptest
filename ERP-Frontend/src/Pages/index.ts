@@ -10,5 +10,7 @@ export { AgentDetail } from './Helpdesk/Ticket/AgentDetail';
 export { ClientDetail } from './Helpdesk/Ticket/ClientDetail';
 export { Knowledge } from './Helpdesk/Knowledge/Knowledge';
 export { KnowledgeDetail } from './Helpdesk/Knowledge/KnowledgeDetail';
+export { Intervention } from './Helpdesk/Intervention/Intervention';
+export { InterventionDetail } from './Helpdesk/Intervention/InterventionDetail';
 export { ClientDashboard } from './Helpdesk/Ticket/ClientDashboard';
 export { SubClientDashboard } from './Helpdesk/Ticket/SubClientDashboard';

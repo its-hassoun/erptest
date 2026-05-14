@@ -8,7 +8,7 @@ namespace ModuleHelpDeskTimesheet.Models
         public int Id { get; set; }
 
         [Required]
-        public string AgentId { get; set; } = string.Empty;
+        public int AgentId { get; set; }
 
         [Required]
         public string Titre { get; set; } = string.Empty; 

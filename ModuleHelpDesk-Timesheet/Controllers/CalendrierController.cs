@@ -15,11 +15,11 @@ namespace ModuleHelpDeskTimesheet.Controllers
             _repo = repo;
         }
 
-        // GET: api/Calendrier/agent/AGENT001?start=2024-01-01&end=2024-01-31
+        // GET: api/Calendrier/agent/1?start=2024-01-01&end=2024-01-31
         [HttpGet("agent/{agentId}")]
         public async Task<ActionResult<IEnumerable<Calendrier>>> GetByAgent(
-            string agentId, 
-            [FromQuery] DateTime start, 
+            int agentId,
+            [FromQuery] DateTime start,
             [FromQuery] DateTime end)
         {
             var events = await _repo.GetCalendarByAgentAsync(agentId, start, end);

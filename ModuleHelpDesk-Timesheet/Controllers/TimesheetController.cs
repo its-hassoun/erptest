@@ -15,11 +15,11 @@ namespace ModuleHelpDeskTimesheet.Controllers
             _repo = repo;
         }
 
-        // GET: api/Timesheet/agent/AGENT001?start=2024-01-01&end=2024-01-31
+        // GET: api/Timesheet/agent/1?start=2024-01-01&end=2024-01-31
         [HttpGet("agent/{agentId}")]
         public async Task<ActionResult<IEnumerable<TimesheetEntry>>> GetByAgent(
-            string agentId, 
-            [FromQuery] DateTime start, 
+            int agentId,
+            [FromQuery] DateTime start,
             [FromQuery] DateTime end)
         {
             var entries = await _repo.GetEntriesByAgentAsync(agentId, start, end);

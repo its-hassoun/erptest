@@ -10,7 +10,8 @@ import {
   Building,
   Users,
   Calendar,
-  BookOpen
+  BookOpen,
+  Wrench
 } from 'lucide-react';
 import type { User } from '../../types/user';
 import { Avatar } from '../ui/Avatar';
@@ -59,6 +60,14 @@ export function Sidebar({
       path: '/knowledge',
       label: 'Knowledge Base',
       icon: BookOpen,
+      section: 'HELPDESK',
+      roles: ['agent', 'Admin']
+    },
+    {
+      id: 'interventions',
+      path: '/interventions',
+      label: 'Interventions',
+      icon: Wrench,
       section: 'HELPDESK',
       roles: ['agent', 'Admin']
     },
