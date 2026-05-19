@@ -1,4 +1,4 @@
-import { helpdeskApi } from '../api';
+import { helpdeskApi } from '../../config/api';
 import type { Ticket, TicketCollaborateur, StatutTicket, PrioriteTicket, FacturationResponse } from '../../types/helpdesk'
 
 export const ticketService = {
@@ -21,9 +21,14 @@ export const ticketService = {
   getByPriority: (priority: PrioriteTicket): Promise<Ticket[]> =>
     helpdeskApi.get(`/tickets/filter/priority/${priority}`).then(r => r.data),
 
-  create: (ticket: Omit<Ticket, 'id' | 'messages' | 'collaborateurs'>): Promise<Ticket> =>
-    helpdeskApi.post('/tickets', ticket).then(r => r.data),
-
+create: (ticket: FormData): Promise<Ticket> =>
+    helpdeskApi.post('/tickets', ticket, {
+        headers: {
+            // On force la suppression du header pour que le navigateur 
+            // génère lui-même le multipart/form-data avec le bon "boundary"
+            'Content-Type': undefined 
+        }
+    }).then(r => r.data),
   update: (id: number, ticket: Ticket): Promise<void> =>
     helpdeskApi.put(`/tickets/${id}`, ticket).then(r => r.data),
 

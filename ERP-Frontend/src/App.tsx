@@ -18,7 +18,9 @@ import { SubClientDashboard } from './Pages/Helpdesk/Ticket/SubClientDashboard';
 
 // Import des types et mocks restants
 import { USERS, TIMESHEETS, PROJECTS } from './data/mockData';
-import type { User, TimesheetTask, Timesheet } from './types';
+import type { TimesheetTask, Timesheet } from './types/timesheets';
+import type { Ticket } from './types/helpdesk';
+import type { User } from './types/user';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

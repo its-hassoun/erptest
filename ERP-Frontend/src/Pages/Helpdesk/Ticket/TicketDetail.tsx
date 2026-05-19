@@ -183,6 +183,48 @@ export function TicketDetail({ currentUser, onUpdateStatus }: TicketDetailProps)
               <p className="italic text-lg text-slate-700">"{ticket.description}"</p>
             </div>
 
+            {/* NOUVELLE SECTION : PIÈCES JOINTES */}
+{ticket.imagesUrls && ticket.imagesUrls.length > 0 && (
+  <div className="space-y-3">
+    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+      Documents & Images ({ticket.imagesUrls.length})
+    </p>
+    <div className="flex flex-wrap gap-4">
+      {ticket.imagesUrls.map((url, index) => {
+        const isImage = /\.(jpg|jpeg|png|gif|webp)$/i.test(url);
+        
+        return (
+          <a
+            key={index}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative w-32 h-32 bg-white rounded-2xl border-2 border-slate-100 overflow-hidden hover:border-[#ef7c21] transition-all shadow-sm hover:shadow-md"
+          >
+            {isImage ? (
+              <img 
+                src={url} 
+                alt={`Attachement ${index}`} 
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" 
+              />
+            ) : (
+              <div className="w-full h-full flex flex-col items-center justify-center p-2 text-center">
+                <Layers className="text-slate-300 mb-1" size={24} />
+                <span className="text-[8px] font-bold text-slate-400 truncate w-full">
+                  DOCUMENT {index + 1}
+                </span>
+              </div>
+            )}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 flex items-center justify-center transition-colors">
+              <Check className="text-white opacity-0 group-hover:opacity-100" size={20} />
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+)}
+
             {isWorkable && isStaff && (
               <div className="flex gap-4 pt-4 border-t">
                 <button onClick={() => setIsPaused(!isPaused)} className={`flex-1 h-16 rounded-2xl font-bold text-white ${isPaused ? 'bg-emerald-500' : 'bg-orange-500'}`}>

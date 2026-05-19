@@ -38,67 +38,71 @@ export function CreateTicketModal({ isOpen, onClose, onSubmit, currentUser }: {
 
   const isAdminOrAgent = currentUser.role === 'Admin' || currentUser.role === 'agent';
 
-  // Charger les types d'interventions au montage
   useEffect(() => {
     if (isOpen) {
       interventionService.getAll().then(setInterventions).catch(console.error);
     }
   }, [isOpen]);
 
-  // Récupérer la liste des sous-clients selon le client sélectionné
   const availableSubClients = useMemo(() => {
     const client = CLIENTS_DATA.find(c => String(c.id) === formData.clientId);
     return client?.subClients || [];
   }, [formData.clientId]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsSubmitting(true);
 
-    try {
-      const selectedInt = interventions.find(i => String(i.id) === formData.interventionId);
+  try {
+    const selectedInt = interventions.find(i => String(i.id) === formData.interventionId);
+    const data = new FormData();
 
-      const ticketToCreate: Partial<Ticket> = {
-        titre: formData.interventionId === 'other' ? formData.customTitle : (selectedInt?.nom || 'Sans titre'),
-        description: formData.description,
-        priorite: (priorityMap[formData.priority] ?? 1) as PrioriteTicket,  
-        statut: StatutTicket.Nouveau,
-        categorie: Number(formData.categorie) as CategorieAction,
-        dateCreation: new Date().toISOString(),
-        interventionId: formData.interventionId === 'other' ? undefined : Number(formData.interventionId),
-      };
+    // --- DONNÉES TEXTUELLES ---
+    data.append('Titre', formData.interventionId === 'other' ? formData.customTitle : (selectedInt?.nom || 'Intervention'));
+    data.append('Description', formData.description || "");
 
-      // --- LOGIQUE D'INJECTION DES IDENTIFIANTS ---
-      if (isAdminOrAgent) {
-        ticketToCreate.agentPrincipalId = currentUser.id;
-        ticketToCreate.clientId = Number(formData.clientId);
-        ticketToCreate.sousClientId = formData.subClientId ? Number(formData.subClientId) : undefined;
-      } 
-      else if (currentUser.role === 'client') {
-        ticketToCreate.clientId = currentUser.id;
-        ticketToCreate.sousClientId = undefined;
-      } 
-      else if (currentUser.role === 'subclient') {
-        ticketToCreate.sousClientId = currentUser.id;
-        // On cherche le parent via une propriété personnalisée ou fallback
-        ticketToCreate.clientId = (currentUser as any).parentId || (currentUser as any).clientId || 0;
-      }
-
-      const createdTicket = await ticketService.create(ticketToCreate as Ticket);
-      
-      
-
-      onSubmit(createdTicket);
-      onClose();
-      setFormData({ clientId: '', subClientId: '', interventionId: '', customTitle: '', priority: 'medium', categorie: '0', description: '' });
-      setFiles([]);
-    } catch (err) {
-      console.error("Erreur creation:", err);
-      alert("Une erreur est survenue lors de la création du ticket.");
-    } finally {
-      setIsSubmitting(false);
+    // --- ENUMS ET NOMBRES (Toujours en string) ---
+    data.append('Statut', '0'); // Nouveau
+    data.append('Priorite', (priorityMap[formData.priority] ?? 1).toString());
+    data.append('Categorie', formData.categorie.toString());
+    
+    // Identifiants
+    data.append('ClientId', (formData.clientId || currentUser.id).toString());
+    data.append('AgentPrincipalId', currentUser.id.toString());
+    
+    if (formData.interventionId && formData.interventionId !== 'other') {
+      data.append('InterventionId', formData.interventionId);
     }
-  };
+
+    // Champs techniques requis par le modèle
+    data.append('DateCreation', new Date().toISOString());
+    data.append('DureeReelleMinutes', '0');
+    data.append('CoutFinal', '0');
+
+    // --- FICHIERS ---
+    if (files.length > 0) {
+      files.forEach((file) => {
+        data.append('files', file); 
+      });
+    }
+
+    // DEBUG : Vérifier le contenu avant envoi
+    for (let [key, value] of data.entries()) {
+      console.log(`${key}:`, value);
+    }
+
+    const createdTicket = await ticketService.create(data);
+    
+    onSubmit(createdTicket);
+    onClose();
+    setFiles([]); // Reset
+  } catch (err: any) {
+    console.error("Détails de l'erreur:", err.response?.data?.errors);
+    alert("Erreur lors de la création du ticket. Vérifiez la console.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   if (!isOpen) return null;
 

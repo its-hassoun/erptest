@@ -1,12 +1,10 @@
+using System.Text.Json;
+
 namespace ITANIS.SharedEvents
 {
-    /// <summary>
-    /// Publié par ModuleCRM à chaque création / modification / suppression d'un Contact.
-    /// Consommé par le module Helpdesk pour maintenir un read-replica local des contacts clients.
-    /// </summary>
     public class ContactSyncEvent
     {
-        public SyncAction Action { get; set; }
+        public JsonElement Action { get; set; }
         public int Id { get; set; }
         public int CompanyId { get; set; }
         public string Nom { get; set; } = string.Empty;
@@ -17,5 +15,20 @@ namespace ITANIS.SharedEvents
         public string? TelephoneCountry { get; set; }
         public bool IsActive { get; set; } = true;
         public DateTime ChangedAt { get; set; } = DateTime.UtcNow;
+
+        public string GetActionAsString()
+        {
+            if (Action.ValueKind == JsonValueKind.Number)
+                return Action.GetInt32() switch
+                {
+                    0 => "Created",
+                    1 => "Updated",
+                    2 => "Deleted",
+                    var v => $"Unknown({v})"
+                };
+            if (Action.ValueKind == JsonValueKind.String)
+                return Action.GetString() ?? string.Empty;
+            return string.Empty;
+        }
     }
 }

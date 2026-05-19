@@ -1,12 +1,10 @@
+using System.Text.Json;
+
 namespace ITANIS.SharedEvents
 {
-    /// <summary>
-    /// Publié par ModuleRH à chaque création / modification / suppression d'un Agent.
-    /// Consommé par GestionProjet pour maintenir un read-replica local des agents.
-    /// </summary>
     public class AgentSyncEvent
     {
-        public SyncAction Action { get; set; }
+        public JsonElement Action { get; set; }
         public int Id { get; set; }
         public string Nom { get; set; } = string.Empty;
         public string Prenom { get; set; } = string.Empty;
@@ -20,5 +18,24 @@ namespace ITANIS.SharedEvents
         public decimal? CoutHoraire { get; set; }
         public decimal? Rating { get; set; }
         public DateTime ChangedAt { get; set; } = DateTime.UtcNow;
+
+        public string GetActionAsString()
+        {
+            if (Action.ValueKind == JsonValueKind.Number)
+            {
+                int val = Action.GetInt32();
+                return val switch
+                {
+                    0 => "Created",
+                    1 => "Updated",
+                    2 => "Deleted",
+                    _ => $"Unknown({val})"
+                };
+            }
+            if (Action.ValueKind == JsonValueKind.String)
+                return Action.GetString() ?? string.Empty;
+
+            return string.Empty;
+        }
     }
 }

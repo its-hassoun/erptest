@@ -5,7 +5,7 @@ using ModuleHelpDesk.Repositories;
 namespace ModuleHelpDesk.Controllers
 {
     [ApiController]
-    [Route("api/helpdesk/[controller]")]
+    [Route("api/[controller]")]
     public class InterventionsController : ControllerBase
     {
         private readonly ITicketRepository _repo;

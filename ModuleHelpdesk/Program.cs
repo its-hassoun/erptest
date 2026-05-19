@@ -31,9 +31,9 @@ builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 
 builder.Services.AddMassTransit(x =>
 {
-    // Register your consumers
     x.AddConsumer<AgentSyncConsumer>();
     x.AddConsumer<CompanySyncConsumer>();
+    x.AddConsumer<ContactSyncConsumer>();
 
     x.UsingRabbitMq((ctx, cfg) =>
     {
@@ -43,10 +43,14 @@ builder.Services.AddMassTransit(x =>
             h.Password("rabbitMQ-dev");
         });
 
-        // Each consumer needs its own receive endpoint
         cfg.ReceiveEndpoint("helpdesk-agent-sync", e =>
         {
             e.ConfigureConsumer<AgentSyncConsumer>(ctx);
+        });
+
+        cfg.ReceiveEndpoint("helpdesk-contact-sync", e =>
+        {
+            e.ConfigureConsumer<ContactSyncConsumer>(ctx);
         });
 
         cfg.ReceiveEndpoint("helpdesk-company-sync", e =>
@@ -67,6 +71,8 @@ if (app.Environment.IsDevelopment())
 // ─── Middleware order matters ──────────────────────────────────────────────────
 app.UseCors("AllowFrontend");   // must be before UseAuthorization
 app.UseAuthorization(); 
+
+app.UseStaticFiles();
 app.MapControllers(); 
 
 app.Run();

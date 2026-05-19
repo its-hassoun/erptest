@@ -19,9 +19,10 @@ public class ContactSyncConsumer : IConsumer<ContactSyncEvent>
     public async Task Consume(ConsumeContext<ContactSyncEvent> context)
     {
         var msg = context.Message;
-        _logger.LogInformation("ContactSync {Action} id={Id} company={CompanyId}", msg.Action, msg.Id, msg.CompanyId);
+        var action = msg.GetActionAsString();
+        _logger.LogInformation("ContactSync {Action} id={Id} company={CompanyId}", action, msg.Id, msg.CompanyId);
 
-        if (msg.Action == SyncAction.Deleted)
+        if (action == "Deleted")
         {
             var existing = await _db.Contacts.FindAsync(msg.Id);
             if (existing != null)

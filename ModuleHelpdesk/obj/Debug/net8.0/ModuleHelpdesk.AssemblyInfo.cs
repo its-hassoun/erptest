@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ModuleHelpdesk")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+93f54602fdf5f298e9ec8acc759df2d09cdcd8ea")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ffb6fe123cc87507c8a5ea960c1d7e60f0fdaf8d")]
 [assembly: System.Reflection.AssemblyProductAttribute("ModuleHelpdesk")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ModuleHelpdesk")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

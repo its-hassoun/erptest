@@ -20,9 +20,10 @@ public class CompanySyncConsumer : IConsumer<CompanySyncEvent>
     public async Task Consume(ConsumeContext<CompanySyncEvent> context)
     {
         var msg = context.Message;
-        _logger.LogInformation("CompanySync {Action} id={Id} {Raison}", msg.Action, msg.Id, msg.RaisonSociale);
+        var action = msg.GetActionAsString();
+        _logger.LogInformation("CompanySync {Action} id={Id} {Raison}", action, msg.Id, msg.RaisonSociale);
 
-        if (msg.Action == SyncAction.Deleted)
+        if (action == "Deleted")
         {
             var existing = await _db.Companies.FindAsync(msg.Id);
             if (existing != null)

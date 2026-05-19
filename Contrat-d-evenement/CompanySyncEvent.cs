@@ -1,12 +1,10 @@
+using System.Text.Json;
+
 namespace ITANIS.SharedEvents
 {
-    /// <summary>
-    /// Publié par ModuleCRM à chaque création / modification / suppression d'une Company.
-    /// Consommé par GestionProjet pour maintenir un read-replica local des clients.
-    /// </summary>
     public class CompanySyncEvent
     {
-        public SyncAction Action { get; set; }
+        public JsonElement Action { get; set; }
         public int Id { get; set; }
         public string RaisonSociale { get; set; } = string.Empty;
         public string? Secteur { get; set; }
@@ -20,5 +18,20 @@ namespace ITANIS.SharedEvents
         public string? Statut { get; set; }
         public decimal? MaxHeuresTraitementTicket { get; set; }
         public DateTime ChangedAt { get; set; } = DateTime.UtcNow;
+
+        public string GetActionAsString()
+        {
+            if (Action.ValueKind == JsonValueKind.Number)
+                return Action.GetInt32() switch
+                {
+                    0 => "Created",
+                    1 => "Updated",
+                    2 => "Deleted",
+                    var v => $"Unknown({v})"
+                };
+            if (Action.ValueKind == JsonValueKind.String)
+                return Action.GetString() ?? string.Empty;
+            return string.Empty;
+        }
     }
 }

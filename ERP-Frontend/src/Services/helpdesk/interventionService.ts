@@ -1,4 +1,4 @@
-import { helpdeskApi } from '../api'
+import { helpdeskApi } from '../../config/api'
 import type { Intervention, CategorieAction } from '../../types/helpdesk'
 
 export const interventionService = {

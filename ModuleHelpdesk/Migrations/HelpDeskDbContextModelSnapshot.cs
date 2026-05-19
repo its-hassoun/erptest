@@ -77,10 +77,7 @@ namespace ModuleHelpdesk.Migrations
             modelBuilder.Entity("Company", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Adresse")
                         .HasColumnType("nvarchar(max)");
@@ -127,10 +124,7 @@ namespace ModuleHelpdesk.Migrations
             modelBuilder.Entity("Contact", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");

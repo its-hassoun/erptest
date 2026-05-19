@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Admin\\Desktop\\stg\\erptest\\ModuleHelpdesk\\wwwroot\\uploads\\tickets\\aa98338e-e1e9-409b-8860-a451a9c2d03d.png",
+      "PackagePath": "staticwebassets\\uploads\\tickets\\aa98338e-e1e9-409b-8860-a451a9c2d03d.png"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Desktop\\stg\\erptest\\ModuleHelpdesk\\wwwroot\\uploads\\tickets\\b8705bcd-29a0-44ad-9fca-c534a86f4b8d.png",
+      "PackagePath": "staticwebassets\\uploads\\tickets\\b8705bcd-29a0-44ad-9fca-c534a86f4b8d.png"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Desktop\\stg\\erptest\\ModuleHelpdesk\\wwwroot\\uploads\\tickets\\ea44db34-3398-4839-88de-7a64e6a50e75.png",
+      "PackagePath": "staticwebassets\\uploads\\tickets\\ea44db34-3398-4839-88de-7a64e6a50e75.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ModuleHelpdesk.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.ModuleHelpdesk.props",
+      "PackagePath": "build\\ModuleHelpdesk.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ModuleHelpdesk.props",
+      "PackagePath": "buildMultiTargeting\\ModuleHelpdesk.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.ModuleHelpdesk.props",
+      "PackagePath": "buildTransitive\\ModuleHelpdesk.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

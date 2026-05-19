@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Desktop\\wasssim\\ModuleHelpdesk\\ModuleHelpdesk.csproj": {}
+    "C:\\Users\\Admin\\Desktop\\stg\\erptest\\ModuleHelpdesk\\ModuleHelpdesk.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Desktop\\wasssim\\Contrat-d-evenement\\ITANIS.SharedEvents.csproj": {
+    "C:\\Users\\Admin\\Desktop\\stg\\erptest\\Contrat-d-evenement\\ITANIS.SharedEvents.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\wasssim\\Contrat-d-evenement\\ITANIS.SharedEvents.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\stg\\erptest\\Contrat-d-evenement\\ITANIS.SharedEvents.csproj",
         "projectName": "ITANIS.SharedEvents",
-        "projectPath": "C:\\Users\\Admin\\Desktop\\wasssim\\Contrat-d-evenement\\ITANIS.SharedEvents.csproj",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\stg\\erptest\\Contrat-d-evenement\\ITANIS.SharedEvents.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Desktop\\wasssim\\Contrat-d-evenement\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\stg\\erptest\\Contrat-d-evenement\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -62,14 +62,14 @@
         }
       }
     },
-    "C:\\Users\\Admin\\Desktop\\wasssim\\ModuleHelpdesk\\ModuleHelpdesk.csproj": {
+    "C:\\Users\\Admin\\Desktop\\stg\\erptest\\ModuleHelpdesk\\ModuleHelpdesk.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\wasssim\\ModuleHelpdesk\\ModuleHelpdesk.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\stg\\erptest\\ModuleHelpdesk\\ModuleHelpdesk.csproj",
         "projectName": "ModuleHelpdesk",
-        "projectPath": "C:\\Users\\Admin\\Desktop\\wasssim\\ModuleHelpdesk\\ModuleHelpdesk.csproj",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\stg\\erptest\\ModuleHelpdesk\\ModuleHelpdesk.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Desktop\\wasssim\\ModuleHelpdesk\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\stg\\erptest\\ModuleHelpdesk\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -84,8 +84,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Admin\\Desktop\\wasssim\\Contrat-d-evenement\\ITANIS.SharedEvents.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Desktop\\wasssim\\Contrat-d-evenement\\ITANIS.SharedEvents.csproj"
+              "C:\\Users\\Admin\\Desktop\\stg\\erptest\\Contrat-d-evenement\\ITANIS.SharedEvents.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Desktop\\stg\\erptest\\Contrat-d-evenement\\ITANIS.SharedEvents.csproj"
               }
             }
           }

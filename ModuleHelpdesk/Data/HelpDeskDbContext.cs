@@ -27,25 +27,31 @@ namespace ModuleHelpDesk.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // --- 1. CONFIGURATION DES COMPARATEURS DE LISTES (RÉSOUD LES WARNINGS 10620) ---
             var stringListComparer = new ValueComparer<List<string>>(
                 (c1, c2) => c1!.SequenceEqual(c2!),
                 c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
                 c => c.ToList());
 
-            // --- 2. CONFIGURATION DES DÉCIMAUX (RÉSOUD LES WARNINGS 30000) ---
-            modelBuilder.Entity<Agent>(entity => {
+            modelBuilder.Entity<Agent>(entity =>
+            {
                 entity.Property(a => a.CoutHoraire).HasColumnType("decimal(18,2)");
                 entity.Property(a => a.Rating).HasColumnType("decimal(3,2)");
-                entity.Property(a => a.Id).ValueGeneratedNever(); // Ton choix pour RabbitMQ
+                entity.Property(a => a.Id).ValueGeneratedNever();
             });
 
-            modelBuilder.Entity<Company>(entity => {
+            modelBuilder.Entity<Company>(entity =>
+            {
                 entity.Property(c => c.MaxHeuresTraitementTicket).HasColumnType("decimal(18,2)");
+                entity.Property(c => c.Id).ValueGeneratedNever();
             });
 
-            // --- 3. CONVERSIONS JSON & COMPARER ---
-            modelBuilder.Entity<Ticket>(entity => {
+            modelBuilder.Entity<Contact>(entity =>
+            {
+                entity.Property(c => c.Id).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<Ticket>(entity =>
+            {
                 entity.Property(t => t.ImagesUrls)
                     .HasConversion(
                         v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null!),
@@ -54,7 +60,8 @@ namespace ModuleHelpDesk.Data
                     .Metadata.SetValueComparer(stringListComparer);
             });
 
-            modelBuilder.Entity<KnowledgeSolution>(entity => {
+            modelBuilder.Entity<KnowledgeSolution>(entity =>
+            {
                 entity.Property(s => s.PiecesJointesUrls)
                     .HasConversion(
                         v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null!),
@@ -62,14 +69,12 @@ namespace ModuleHelpDesk.Data
                     )
                     .Metadata.SetValueComparer(stringListComparer);
 
-                // Relation KnowledgeBase <-> Solution
                 entity.HasOne<KnowledgeBase>()
                       .WithMany(k => k.Solutions)
                       .HasForeignKey(s => s.KnowledgeBaseId)
                       .OnDelete(DeleteBehavior.Cascade);
             });
 
-            // --- 4. RELATIONS ET CLÉS ---
             modelBuilder.Entity<MessageTicket>(entity =>
             {
                 entity.HasOne(m => m.Ticket)

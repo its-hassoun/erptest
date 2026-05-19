@@ -1,11 +1,77 @@
 {
   "Version": 1,
-  "Hash": "HBIu+JOkI94JCLwj9k/7JU0z+HqQNxpsOHa3aSHxl7k=",
+  "Hash": "H8SdcnchZv4AKmQ8cv7/9pvnR6KSjugkBUTrhVJwgsE=",
   "Source": "ModuleHelpdesk",
   "BasePath": "_content/ModuleHelpdesk",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "ModuleHelpdesk\\wwwroot",
+      "Source": "ModuleHelpdesk",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\stg\\erptest\\ModuleHelpdesk\\wwwroot\\",
+      "BasePath": "_content/ModuleHelpdesk",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Admin\\Desktop\\stg\\erptest\\ModuleHelpdesk\\wwwroot\\uploads\\tickets\\aa98338e-e1e9-409b-8860-a451a9c2d03d.png",
+      "SourceId": "ModuleHelpdesk",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\stg\\erptest\\ModuleHelpdesk\\wwwroot\\",
+      "BasePath": "_content/ModuleHelpdesk",
+      "RelativePath": "uploads/tickets/aa98338e-e1e9-409b-8860-a451a9c2d03d.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\tickets\\aa98338e-e1e9-409b-8860-a451a9c2d03d.png"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Desktop\\stg\\erptest\\ModuleHelpdesk\\wwwroot\\uploads\\tickets\\b8705bcd-29a0-44ad-9fca-c534a86f4b8d.png",
+      "SourceId": "ModuleHelpdesk",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\stg\\erptest\\ModuleHelpdesk\\wwwroot\\",
+      "BasePath": "_content/ModuleHelpdesk",
+      "RelativePath": "uploads/tickets/b8705bcd-29a0-44ad-9fca-c534a86f4b8d.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\tickets\\b8705bcd-29a0-44ad-9fca-c534a86f4b8d.png"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Desktop\\stg\\erptest\\ModuleHelpdesk\\wwwroot\\uploads\\tickets\\ea44db34-3398-4839-88de-7a64e6a50e75.png",
+      "SourceId": "ModuleHelpdesk",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\stg\\erptest\\ModuleHelpdesk\\wwwroot\\",
+      "BasePath": "_content/ModuleHelpdesk",
+      "RelativePath": "uploads/tickets/ea44db34-3398-4839-88de-7a64e6a50e75.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\tickets\\ea44db34-3398-4839-88de-7a64e6a50e75.png"
+    }
+  ]
 }

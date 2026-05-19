@@ -22,6 +22,60 @@ namespace Modulehelpdesktimesheet.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("ModuleHelpDeskTimesheet.Models.Agent", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AgentType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("CoutHoraire")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Departement")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Nom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Poste")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Prenom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("Rating")
+                        .HasPrecision(3, 2)
+                        .HasColumnType("decimal(3,2)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("SyncedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Telephone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Agents");
+                });
+
             modelBuilder.Entity("ModuleHelpDeskTimesheet.Models.Calendrier", b =>
                 {
                     b.Property<int>("Id")
@@ -30,9 +84,8 @@ namespace Modulehelpdesktimesheet.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AgentId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AgentId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DateDebut")
                         .HasColumnType("datetime2");
@@ -52,6 +105,137 @@ namespace Modulehelpdesktimesheet.Migrations
                     b.ToTable("CalendarEvents");
                 });
 
+            modelBuilder.Entity("ModuleHelpDeskTimesheet.Models.DeclarationTemps", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DeclaredAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("DureeHeures")
+                        .HasPrecision(6, 2)
+                        .HasColumnType("decimal(6,2)");
+
+                    b.Property<string>("EmployeAgentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeIdRh")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmployeNomComplet")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProjetId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProjetNom")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SousTacheId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SousTacheTitre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("SyncedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DeclarationTemps");
+                });
+
+            modelBuilder.Entity("ModuleHelpDeskTimesheet.Models.Ticket", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AgentPrincipalId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Categorie")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CodeUnidesk")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("CoutFinal")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("DateCreation")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateFermeture")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("DureeReelleMinutes")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("InterventionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Priorite")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SousClientId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Statut")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("SyncedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Titre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("ModuleHelpDeskTimesheet.Models.TicketCollaborateur", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AgentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SyncedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TicketId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TicketCollaborateurs");
+                });
+
             modelBuilder.Entity("ModuleHelpDeskTimesheet.Models.TimesheetEntry", b =>
                 {
                     b.Property<int>("Id")
@@ -60,9 +244,8 @@ namespace Modulehelpdesktimesheet.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AgentId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AgentId")
+                        .HasColumnType("int");
 
                     b.Property<string>("CommentaireAdmin")
                         .HasColumnType("nvarchar(max)");

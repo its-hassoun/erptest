@@ -43,7 +43,9 @@ services:
       - sqlserver
   
   helpdesk-timesheet-api:
-    build: ../ModuleHelpDesk-Timesheet 
+    build:
+      context: ..
+      dockerfile: ./ModuleHelpDesk-Timesheet/Dockerfile 
     image: helpdesktimesheet-service
     ports:
       - "5004:8080"
@@ -73,6 +75,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
       - sqlserver
+    volumes:
+      - ../ModuleHelpDesk/wwwroot/uploads:/app/wwwroot/uploads
 
   erp-frontend:
     build: ../ERP-Frontend
